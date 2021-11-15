@@ -2,13 +2,12 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: performance-addon-operator
+  name: openshift-pipelines-operator-rh
   namespace: openshift-operators
-  labels:
-    operators.coreos.com/performance-addon-operator.openshift-operators: ''
 spec:
-  channel: 'CHANGEME'
+  channel: "stable"
   installPlanApproval: Automatic
-  name: performance-addon-operator
+  name: openshift-pipelines-operator-rh
+  # Modify source name of the catalogsource for isolated network deployments
   source: redhat-operators
   sourceNamespace: openshift-marketplace

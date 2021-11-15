@@ -9,7 +9,8 @@ spec:
     - git:
         repoURL: '{{ $.Values.global.base_git_url }}'
         directories:
-          - path: {{ $.Values.global.base_git_path }}/{{ $.Values.global.name }}.{{ $.Values.global.domain }}/operator-configs/*
+          # - path: {{ $.Values.global.base_git_path }}/{{ $.Values.global.name }}.{{ $.Values.global.domain }}/operator-configs/*
+          - path: operator-configs/*
         revision: HEAD
   template:
     metadata:
