@@ -1,0 +1,29 @@
+ALLOW_PULLS_WITHOUT_STRICT_LOGGING: false
+AUTHENTICATION_TYPE: Database
+DEFAULT_TAG_EXPIRATION: 2w
+ENTERPRISE_LOGO_URL: /static/img/RH_Logo_Quay_Black_UX-horizontal.svg
+FEATURE_BUILD_SUPPORT: false
+FEATURE_DIRECT_LOGIN: true
+FEATURE_MAILING: false
+REGISTRY_TITLE: Red Hat Quay
+REGISTRY_TITLE_SHORT: Red Hat Quay
+TAG_EXPIRATION_OPTIONS:
+- 2w
+TEAM_RESYNC_STALE_TIME: 60m
+TESTING: false
+SERVER_HOSTNAME: lab-registry.ocpsmc.lab.diktio.net
+LDAP_ADMIN_DN: uid=ocp-binddn,cn=sysaccounts,cn=etc,dc=lab,dc=diktio,dc=net
+LDAP_ADMIN_PASSWD: Redhat01
+LDAP_ALLOW_INSECURE_FALLBACK: true
+LDAP_BASE_DN:
+- dc=lab
+- dc=diktio
+- dc=net
+LDAP_EMAIL_ATTR: mail
+LDAP_UID_ATTR: uid
+LDAP_URI: ldap://idm.lab.diktio.net
+LDAP_USER_FILTER: ""
+LDAP_USER_RDN:
+- ou=profile
+- cn=users
+- cn=accounts

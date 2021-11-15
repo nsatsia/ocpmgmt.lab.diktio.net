@@ -1,0 +1,14 @@
+---
+# https://github.com/openshift/assisted-service/blob/master/docs/operator.md#specifying-environmental-variables-via-configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $.Values.ai.service_config_name }}
+  namespace: {{ $.Values.ai.namespace }}
+data:
+  LOG_LEVEL: "debug"
+  SUPPORT_L2: "false"
+#  DISABLED_HOST_VALIDATIONS: "belongs-to-machine-cidr,belongs-to-majority-group"
+  ISO_IMAGE_TYPE: "full-iso"
+  PUBLIC_CONTAINER_REGISTRIES: {{ $.Values.ai.registry_url | quote }}
+  CONTROLLER_IMAGE: {{ $.Values.ai.controller_image | quote }}

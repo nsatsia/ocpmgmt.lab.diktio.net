@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mirror-registry-config-map
+  namespace: {{ $.Values.ai.namespace }}
+  labels:
+    app: assisted-service
+data:
+  ca-bundle.crt: {{ toYaml $.Values.global.ca | indent 2 }} 
+  registries.conf: |
+    unqualified-search-registries = [{{ $.Values.ai.registry_url | quote }}]
+
+    [[registry]]
+       prefix = ""
+       location = "quay.io/openshift"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}"
+    [[registry]]
+       prefix = ""
+       location = "quay.io/ocpmetal"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}"
+    [[registry]]
+       prefix = ""
+       location = "quay.io/openshift-release-dev/ocp-release"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4817"
+    [[registry]]
+       prefix = ""
+       location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4817"

@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: registry-ca-local
+  namespace: openshift-config
+data:
+  {{ $.Values.ai.registry_url }}: {{ toYaml $.Values.global.ca | indent 2 }}
+  

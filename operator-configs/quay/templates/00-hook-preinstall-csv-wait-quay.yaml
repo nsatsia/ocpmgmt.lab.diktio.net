@@ -1,0 +1,37 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: preinstall-{{ $.Values.global.name }}-csv-wait-quay-job
+  namespace: {{ $.Values.gitops.namespace }}
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: {{ $.Values.gitops.service_account }}
+      serviceAccountName: {{ $.Values.gitops.service_account_name }}
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: {{ $.Values.global.hook_image }}
+          imagePullPolicy: IfNotPresent
+          name: {{ $.Values.global.name }}-csv-wait-quay-job
+          env:
+          - name: SLEEP
+            value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "OCS PreSync Hook"
+              CSV_STATUS="Pausing $SLEEP seconds..."
+              while [ "$CSV_STATUS" != "InstallSucceeded" ]; do
+                echo "Waiting for the OCS Operator to be ready. ($CSV_STATUS)"
+                sleep $SLEEP
+                CSV_STATUS=$( oc get csv -n openshift-operators -l operators.coreos.com/quay-operator.openshift-operators='' -o jsonpath={..status.conditions[-1:].reason} )
+              done
+              echo "All done! Hooray!"

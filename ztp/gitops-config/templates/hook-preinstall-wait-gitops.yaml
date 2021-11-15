@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: preinstall-{{ $.Values.global.name }}-wait-argocd-job
+  namespace: {{ $.Values.global.servernamespace }}
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: {{ $.Values.global.hook_image }}
+          imagePullPolicy: IfNotPresent
+          name: {{ $.Values.global.name }}-wait-argocd-job
+          env:
+            - name: SLEEP
+              value: "15"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Cluster Pre Install Hook"
+              URL_READY="Pausing $SLEEP seconds..."
+              echo "Waiting for ArgoCD to install"
+              CSV_STATUS="Pausing $SLEEP seconds..."
+              while [ "$CSV_STATUS" != "Succeeded" ]; do
+                echo "Waiting for the GitOps Operator to be ready. ($CSV_STATUS)"
+                sleep $SLEEP
+                CSV_STATUS=$( oc get csv -n openshift-operators -l operators.coreos.com/openshift-gitops-operator.openshift-operators='' -o jsonpath={..status.phase} )
+              done
+              echo "All done! Hooray!"
+
+

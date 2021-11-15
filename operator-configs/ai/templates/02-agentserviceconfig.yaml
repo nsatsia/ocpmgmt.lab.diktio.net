@@ -1,0 +1,31 @@
+# nsatsia: need to improve to values.yaml
+---
+apiVersion: agent-install.openshift.io/v1beta1
+kind: AgentServiceConfig
+metadata:
+  annotations:
+    unsupported.agent-install.openshift.io/assisted-service-configmap: {{ $.Values.ai.service_config_name }}
+  name: agent
+spec:
+  databaseStorage:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 40Gi
+  filesystemStorage:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 40Gi
+  mirrorRegistryRef:
+    name: mirror-registry-config-map
+  osImages:
+    - openshiftVersion: {{ $.Values.ai.osp_version | quote }}
+      version: {{ $.Values.ai.rhcos_version }}
+      cpuArchitecture: x86_64
+      rootFSUrl: >-
+        {{ $.Values.ai.root_fs_img_url }}
+      url: >-
+        {{ $.Values.ai.root_fs_iso_url }}

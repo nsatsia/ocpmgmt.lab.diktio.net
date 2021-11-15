@@ -1,0 +1,42 @@
+---
+apiVersion: local.storage.openshift.io/v1alpha1
+kind: LocalVolumeSet
+metadata:
+  name: ocs-local-volume-set
+  namespace: openshift-local-storage
+spec:
+  deviceInclusionSpec:
+    deviceTypes:
+      - disk
+      - part
+    minSize: {{ $.Values.lso.minsize }}
+    deviceMechanicalProperties:
+      - NonRotational
+    # (optional) list of models to allow
+    #models:
+    #  - "PERC H730P Mini"
+    #  - "Dell Express Flash NVMe P4610 3.2TB SFF"
+    # (optional) list of device vendors to allow
+    #vendors:
+    #  - DELL
+    #  - ATA
+  nodeSelector:
+    nodeSelectorTerms:
+      - matchExpressions:
+          #- key: ran.openshift.io/lso
+          #  operator: Exists
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            {{- range $.Values.nodes }}
+              {{- range . }}
+                {{- if eq .lso "true" }}
+              - {{ .name }}.{{ $.Values.global.name }}.{{ $.Values.global.domain }}
+                {{- end }}
+              {{- end }}
+            {{- end }}
+  storageClassName: ocs-local-volume-set
+  volumeMode: Block
+  #fstype: ""
+  # Number of devices to be used per node
+  maxDeviceCount: {{ $.Values.lso.maxdevice }}

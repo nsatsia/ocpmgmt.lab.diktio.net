@@ -1,0 +1,39 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: postsync-csv-wait-patch-metal3-job
+  namespace: telco-gitops
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: cli-job-sa
+      serviceAccountName: cli-job-sa
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: {{ $.Values.global.hook_image }}
+          imagePullPolicy: IfNotPresent
+          name: {{ $.Values.global.name }}-default-storageclass-job
+          env:
+            - name: SLEEP
+              value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "OCS PostSync Hook"
+              DEFAULT_CLASS={{ $.Values.global.default_storage_class }}
+              OCS_CLASS="Pausing $SLEEP seconds..."
+              while [ "$OCS_CLASS" != "$DEFAULT_CLASS" ]; do
+                echo "Waiting for the OCS Storage Class to be ready. ($OCS_CLASS)"
+                sleep $SLEEP
+                OCS_CLASS=$( oc get storageclass | egrep $DEFAULT_CLASS | awk '{print $1}' )
+              done
+              oc patch storageclass $DEFAULT_CLASS -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}'
+              echo "All done! Hooray!"

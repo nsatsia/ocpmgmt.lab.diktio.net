@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: hook-succeeded
+    #helm.sh/hook-weight: "-5"
+  name: postinstall-{{ $.Values.global.name }}-add-registry-ca-wait-job
+  namespace: {{ $.Values.gitops.namespace }}
+spec:
+  template:
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: {{ $.Values.gitops.service_account }}
+      serviceAccountName: {{ $.Values.gitops.service_account_name }}
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: {{ $.Values.global.hook_image }}
+          imagePullPolicy: IfNotPresent
+          name: {{ $.Values.global.name }}-add-registry-ca-wait-job
+          env:
+            - name: SLEEP
+              value: "3"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "OCS PostSync Hook"
+              DEFAULT_CLASS="ocs-storagecluster-ceph-rbd"
+              CONFIG_MAP="Pausing $SLEEP seconds..."
+              while [ "$CONFIG_MAP" != "registry-ca-idm" ]; do
+                echo "Waiting for the CA ConfigMap to be defined. ($CONFIG_MAP)"
+                sleep $SLEEP
+                CONFIG_MAP=$( oc get ConfigMap -n openshift-config registry-ca-idm -o jsonpath={..metadata.name} )
+              done
+              # Add it to the  additionalTrustedCA
+              oc patch image.config.openshift.io/cluster --patch '{"spec":{"additionalTrustedCA":{"name":"registry-ca-local"}}}' --type=merge
+              #
+              echo "All done! Hooray!"
