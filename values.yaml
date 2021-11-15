@@ -3,7 +3,8 @@ global:
   domain: lab.diktio.net
   namespace: assisted-installer
   base_git_url: https://github.com/nsatsia/openshift-gitops.git
-  base_git_path: management
+#  base_git_path: management
+  base_git_path: ''
   values_directory_url: https://github.com/nsatsia/ocpmgmt.lab.diktio.net/raw/main/
   api_vip: 192.19.129.21
   ingress_vip: 192.19.129.22
