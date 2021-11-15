@@ -13,9 +13,10 @@ spec:
     repoURL: {{ $.Values.global.base_git_url }}
     targetRevision: HEAD
     path: '{{ $.Values.global.base_git_path }}/{{ $.Values.global.name }}.{{ $.Values.global.domain }}/bp-operators'
-    helm:
-      valueFiles:
-      - "{{ $.Values.global.values_directory_url }}/values.yaml"
+    properties:
+      helm:
+        valueFiles:
+        - "{{ $.Values.global.values_directory_url }}/values.yaml"
   syncPolicy:
     automated:
       # Default prune is "false" 

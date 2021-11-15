@@ -24,9 +24,10 @@ spec:
         repoURL: '{{ $.Values.global.base_git_url }}'
         path: '{{ "{{" }}path{{ "}}" }}'
         targetRevision: HEAD
-      helm:
-        valueFiles:
-        - "{{ $.Values.global.values_directory_url }}/values.yaml"
+        properties:
+          helm:
+            valueFiles:
+            - "{{ $.Values.global.values_directory_url }}/values.yaml"
       syncPolicy:
         automated:
           # Default prune is "false" 
