@@ -17,7 +17,7 @@ spec:
       serviceAccountName: cli-job-sa
       terminationGracePeriodSeconds: 30
       containers:
-        - image: {{ $.Values.global.hook_image }}
+        - image: {{ $.Values.gitops.hook_image }}
           imagePullPolicy: IfNotPresent
           name: {{ $.Values.global.name }}-default-storageclass-job
           env:
