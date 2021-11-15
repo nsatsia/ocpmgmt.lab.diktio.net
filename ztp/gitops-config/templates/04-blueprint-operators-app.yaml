@@ -15,8 +15,7 @@ spec:
     path: '{{ $.Values.global.base_git_path }}/{{ $.Values.global.name }}.{{ $.Values.global.domain }}/bp-operators'
     helm:
       valueFiles:
-      - "{{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}/values-global.yaml"
-      - "{{ coalesce .valuesDirectoryURL $.Values.global.valuesDirectoryURL }}/values-{{ .name }}.yaml"
+      - "{{ $.Values.global.values_directory_url }}/values.yaml"
   syncPolicy:
     automated:
       # Default prune is "false" 
