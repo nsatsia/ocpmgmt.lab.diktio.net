@@ -11,7 +11,8 @@ spec:
       - part
     minSize: {{ $.Values.lso.minsize }}
     deviceMechanicalProperties:
-      - NonRotational
+      - Rotational
+    #  - NonRotational
     # (optional) list of models to allow
     #models:
     #  - "PERC H730P Mini"
