@@ -6,8 +6,10 @@ metadata:
     helm.sh/hook: post-install
     helm.sh/hook-delete-policy: hook-succeeded
     #helm.sh/hook-weight: "-5"
-  name: postsync-csv-wait-patch-metal3-job
+  name: postinstall-csv-wait-patch-metal3-job
   namespace: telco-gitops
+  name: postinstall-{{ $.Values.global.name }}-wait-default-storageclass-job
+  namespace: {{ $.Values.gitops.namespace }}
 spec:
   template:
     spec:
@@ -19,7 +21,7 @@ spec:
       containers:
         - image: {{ $.Values.gitops.hook_image }}
           imagePullPolicy: IfNotPresent
-          name: {{ $.Values.global.name }}-default-storageclass-job
+          name: {{ $.Values.global.name }}-wait-default-storageclass-job
           env:
             - name: SLEEP
               value: "3"
