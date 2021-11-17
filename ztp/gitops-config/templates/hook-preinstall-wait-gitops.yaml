@@ -30,11 +30,12 @@ spec:
               echo "Cluster Pre Install Hook"
               URL_READY="Pausing $SLEEP seconds..."
               echo "Waiting for ArgoCD to install"
+              CSV_NAME=$(oc get csv -n openshift-operators  | egrep openshift-gitops-operator | awk '{print $1}')
               CSV_STATUS="Pausing $SLEEP seconds..."
               while [ "$CSV_STATUS" != "Succeeded" ]; do
                 echo "Waiting for the GitOps Operator to be ready. ($CSV_STATUS)"
                 sleep $SLEEP
-                CSV_STATUS=$( oc get csv -n openshift-operators -l operators.coreos.com/openshift-gitops-operator.openshift-operators='' -o jsonpath={..status.phase} )
+                CSV_STATUS=$( oc get csv -n openshift-operators $CSV_NAME -o jsonpath={..status.phase} )
               done
               echo "All done! Hooray!"
 
