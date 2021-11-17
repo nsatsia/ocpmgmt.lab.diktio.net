@@ -30,10 +30,10 @@ spec:
               echo "OCS PostSync Hook"
               DEFAULT_CLASS="ocs-storagecluster-ceph-rbd"
               CONFIG_MAP="Pausing $SLEEP seconds..."
-              while [ "$CONFIG_MAP" != "registry-ca-idm" ]; do
+              while [ "$CONFIG_MAP" != "registry-ca-local" ]; do
                 echo "Waiting for the CA ConfigMap to be defined. ($CONFIG_MAP)"
                 sleep $SLEEP
-                CONFIG_MAP=$( oc get ConfigMap -n openshift-config registry-ca-idm -o jsonpath={..metadata.name} )
+                CONFIG_MAP=$( oc get ConfigMap -n openshift-config registry-ca-local -o jsonpath={..metadata.name} )
               done
               # Add it to the  additionalTrustedCA
               oc patch image.config.openshift.io/cluster --patch '{"spec":{"additionalTrustedCA":{"name":"registry-ca-local"}}}' --type=merge
