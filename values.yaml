@@ -82,3 +82,17 @@ ai:
     rhcos_version: 48.84.202107202156-0
     root_fs_img_url: http://hypervisor1.lab.diktio.net:8989/openshift-v4/dependencies/rhcos/4.8/4.8.2/rhcos-live-rootfs.x86_64.img
     root_fs_iso_url: http://hypervisor1.lab.diktio.net:8989/openshift-v4/dependencies/rhcos/4.8/4.8.2/rhcos-4.8.2-x86_64-live.x86_64.iso
+
+nodes:
+  masters:
+  - name: "master1"
+    lso: "true"
+    ocs: "true"
+
+  - name: "master2"
+    lso: "true"
+    ocs: "true"
+
+  - name: "master3"
+    lso: "true"
+    ocs: "true"
