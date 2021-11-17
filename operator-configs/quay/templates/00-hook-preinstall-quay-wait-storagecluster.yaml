@@ -28,10 +28,16 @@ spec:
             - -c
             - |
               echo "OCS PreSync Hook"
+              # set storage cluster name based on internal or external
+              if [ {{ $.Values.global.default_storage_class | quote }} = "ocs-storagecluster-ceph-rbd" ]; then
+                STORAGE_NAME="ocs-storagecluster"
+              else
+                STORAGE_NAME="ocs-external-storagecluster"
+              fi
               CSV_STATUS="Pausing $SLEEP seconds..."
               while [ "$CSV_STATUS" != "ReconcileCompleted" ]; do
                 echo "Waiting for the OCS Operator to be ready. ($CSV_STATUS)"
                 sleep $SLEEP
-                CSV_STATUS=$( oc get -n openshift-storage StorageCluster ocs-storagecluster -o jsonpath={..status.conditions[-1:].reason} )
+                CSV_STATUS=$( oc get -n openshift-storage StorageCluster $STORAGE_NAME -o jsonpath={..status.conditions[-1:].reason} )
               done
               echo "All done! Hooray!"

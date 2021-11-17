@@ -28,18 +28,22 @@ spec:
             - -c
             - |
               echo "OCS PreInstall Hook"
+              CSV_NAME=$(oc get csv -n openshift-storage  | egrep ocs-operator | awk '{print $1}')
               CSV_STATUS="Pausing $SLEEP seconds..."
               while [ "$CSV_STATUS" != "InstallSucceeded" ]; do
                 echo "Waiting for the OCS Operator to be ready. ($CSV_STATUS)"
                 sleep $SLEEP
-                CSV_STATUS=$( oc get csv -n openshift-storage -l operators.coreos.com/ocs-operator.openshift-storage='' -o jsonpath={..status.conditions[-1:].reason} )
+                CSV_STATUS=$( oc get csv -n openshift-storage $CSV_NAME -o jsonpath={..status.conditions[-1:].reason} )
               done
-              CSV_STATUS="Pausing $SLEEP seconds..."
-              while [ "$CSV_STATUS" != "Available" ]; do
-                echo "Waiting for LSO volume set ($CSV_STATUS)"
-                sleep $SLEEP
-                CSV_STATUS=$( oc get localvolumeset -n openshift-local-storage ocs-local-volume-set -o jsonpath={..status.conditions[-1:].type} )
-              done
+              # If internal OCS then wait for VolumeSet
+              if [ {{ $.Values.global.default_storage_class | quote }} = "ocs-storagecluster-ceph-rbd" ]; then
+                CSV_STATUS="Pausing $SLEEP seconds..."
+                while [ "$CSV_STATUS" != "Available" ]; do
+                  echo "Waiting for LSO volume set ($CSV_STATUS)"
+                  sleep $SLEEP
+                  CSV_STATUS=$( oc get localvolumeset -n openshift-local-storage ocs-local-volume-set -o jsonpath={..status.conditions[-1:].type} )
+                done
+              fi
               # LABEL nodes
               {{- range $.Values.nodes }}
                 {{- range . }}

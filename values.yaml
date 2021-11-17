@@ -10,7 +10,8 @@ global:
   ingress_vip: 192.19.129.22
   clusternetwork: 10.128.0.0/14
   default_router: 192.19.129.254
-  default_storage_class: "ocs-storagecluster-ceph-rbd"
+  # default_storage_class: "ocs-storagecluster-ceph-rbd"
+  default_storage_class: "ocs-external-storagecluster-ceph-rbd"
   dns: 192.19.128.2
   imagesetref_name: "openshift-v4.8.17-mirror"
   pull_secret: pull-secret
