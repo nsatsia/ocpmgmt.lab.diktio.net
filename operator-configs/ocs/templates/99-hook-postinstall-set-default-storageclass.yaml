@@ -6,8 +6,6 @@ metadata:
     helm.sh/hook: post-install
     helm.sh/hook-delete-policy: hook-succeeded
     #helm.sh/hook-weight: "-5"
-  name: postinstall-csv-wait-patch-metal3-job
-  namespace: telco-gitops
   name: postinstall-{{ $.Values.global.name }}-wait-default-storageclass-job
   namespace: {{ $.Values.gitops.namespace }}
 spec:
