@@ -7,7 +7,9 @@ sleep $SLEEP
 echo -n "."
 done
 echo
-sleep 30
+echo -n "Waiting 60 seconds for all CRDs to apply."
+for i in {1..60}; do echo -n "."; sleep 1; done
+echo
 cd ../gitops-config/
 helm install -f ../../values.yaml gitops-config . 
 cd ../..
