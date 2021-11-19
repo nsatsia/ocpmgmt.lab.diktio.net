@@ -22,10 +22,10 @@ spec:
   mirrorRegistryRef:
     name: mirror-registry-config-map
   osImages:
-    - openshiftVersion: {{ $.Values.ai.osp_version | quote }}
-      version: {{ $.Values.ai.rhcos_version }}
+    - openshiftVersion: {{ $.Values.ai.os_images.osp_version | quote }}
+      version: {{ $.Values.ai.os_images.rhcos_version }}
       cpuArchitecture: x86_64
       rootFSUrl: >-
-        {{ $.Values.ai.root_fs_img_url }}
+        {{ $.Values.ai.os_images.root_fs_img_url }}
       url: >-
-        {{ $.Values.ai.root_fs_iso_url }}
+        {{ $.Values.ai.os_images.root_fs_iso_url }}
