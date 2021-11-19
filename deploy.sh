@@ -1,7 +1,7 @@
 SLEEP=3
 cd ztp/gitops-install
 helm install -f ../../values.yaml gitops-install .
-echo -n "Waiting for OpenShift GitOps to install"
+echo -n "Waiting for OpenShift GitOps to commence installation."
 while ! `oc get crds| egrep argo -q`; do
 sleep $SLEEP
 echo -n "."
