@@ -10,8 +10,8 @@ spec:
       - disk
       - part
     minSize: {{ $.Values.lso.minsize }}
-    deviceMechanicalProperties:
-      - Rotational
+    #deviceMechanicalProperties:
+    #  - Rotational
     #  - NonRotational
     # (optional) list of models to allow
     #models:
