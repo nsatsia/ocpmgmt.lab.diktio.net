@@ -7,6 +7,7 @@ sleep $SLEEP
 echo -n "."
 done
 echo
+sleep 30
 cd ../gitops-config/
 helm install -f ../../values.yaml gitops-config . 
 cd ../..
