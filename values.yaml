@@ -19,7 +19,7 @@ global:
   servernamespace: telco-gitops
   servicenetwork: 172.30.0.0/16
   pull_secret_name: pull-secret
-  pull_secret: '{"auths":{"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"lab-registry.ocpsmc.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"quay.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"registry.redhat.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"}}}'
+  pull_secret: '{"auths":{"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"quay.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"registry.redhat.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"}}}'
   ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'
   ca: |-
     -----BEGIN CERTIFICATE-----
@@ -64,9 +64,9 @@ lso:
 
 mirror:
   - name: openshift-v4.8.15-mirror
-    path: lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4815:4.8.15-x86_64
+    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.15-x86_64
   - name: openshift-v4.8.17-mirror
-    path: lab-registry.ocpsmc.lab.diktio.net/nsatsia/ocp4815:4.8.17-x86_64
+    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.17-x86_64
 
 quay:
   config: lab-quay-config-bundle
@@ -74,7 +74,7 @@ quay:
 ai: 
   namespace: "assisted-installer"
   service_config_name: "assisted-service-config"
-  registry_url: "lab-registry.ocpsmc.lab.diktio.net"
+  registry_url: "lab-registry.ocpmgmt.lab.diktio.net"
   registry_user: "nsatsia"
   registry_password: "Redhat01"
   controller_image: "quay.io/ocpmetal/assisted-installer-controller@sha256:1211c0ba22452388209169b1da0ea63421a42acd4a8885217444a0d559a0822a"

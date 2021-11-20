@@ -11,7 +11,7 @@ TAG_EXPIRATION_OPTIONS:
 - 2w
 TEAM_RESYNC_STALE_TIME: 60m
 TESTING: false
-SERVER_HOSTNAME: lab-registry.ocpsmc.lab.diktio.net
+SERVER_HOSTNAME: lab-registry.ocpmgmt.lab.diktio.net
 LDAP_ADMIN_DN: uid=ocp-binddn,cn=sysaccounts,cn=etc,dc=lab,dc=diktio,dc=net
 LDAP_ADMIN_PASSWD: Redhat01
 LDAP_ALLOW_INSECURE_FALLBACK: true
