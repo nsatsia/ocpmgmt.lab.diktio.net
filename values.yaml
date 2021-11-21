@@ -71,7 +71,7 @@ mirror:
   - name: openshift-v4.8.15-mirror
     path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.15-x86_64
   - name: openshift-v4.8.17-mirror
-    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.17-x86_64
+    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4817:4.8.17-x86_64
 
 quay:
   config: lab-quay-config-bundle
