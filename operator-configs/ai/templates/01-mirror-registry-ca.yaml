@@ -39,3 +39,4 @@ data:
 
        [[registry.mirror]]
        location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4817"
+---
