@@ -4,6 +4,7 @@ global:
   namespace: assisted-installer
   # base_git_url: https://github.com/nsatsia/openshift-gitops.git
   base_git_url: https://github.com/nsatsia/ocpmgmt.lab.diktio.net.git
+  operator_catalog_name: redhat-operator-index
 #
 # Need to rename to values_global_url
 #
@@ -20,7 +21,7 @@ global:
   dns: 192.19.128.2
   imagesetref_name: "openshift-v4.8.17-mirror"
   pull_secret: pull-secret
-  server: telco-gitops
+# NEED to remove servernamespace and switch to gitops.namespace on next rebuild of management cluster
   servernamespace: telco-gitops
   servicenetwork: 172.30.0.0/16
   pull_secret_name: pull-secret
