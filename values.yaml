@@ -82,7 +82,7 @@ ai:
   registry_url: "lab-registry.ocpmgmt.lab.diktio.net"
   registry_user: "nsatsia"
   registry_password: "Redhat01"
-  controller_image: "quay.io/ocpmetal/assisted-installer-controller@sha256:1211c0ba22452388209169b1da0ea63421a42acd4a8885217444a0d559a0822a"
+  controller_image: "quay.io/edge-infrastructure/assisted-installer-controller@sha256:1211c0ba22452388209169b1da0ea63421a42acd4a8885217444a0d559a0822a"
   os_images:
     osp_version: '4.8'
     rhcos_version: 48.84.202107202156-0
