@@ -73,6 +73,8 @@ mirror:
     path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4815:4.8.15-x86_64
   - name: openshift-v4.8.17-mirror
     path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4817:4.8.17-x86_64
+  - name: openshift-v4.8.19-mirror
+    path: lab-registry.ocpmgmt.lab.diktio.net/nsatsia/ocp4817:4.8.19-x86_64
 
 quay:
   config: lab-quay-config-bundle
@@ -83,7 +85,7 @@ ai:
   registry_url: "lab-registry.ocpmgmt.lab.diktio.net"
   registry_user: "nsatsia"
   registry_password: "Redhat01"
-  controller_image: "quay.io/edge-infrastructure/assisted-installer-controller@sha256:1211c0ba22452388209169b1da0ea63421a42acd4a8885217444a0d559a0822a"
+  controller_image: "quay.io/edge-infrastructure/assisted-installer-controller@sha256:3f96b21f34cd0c0c605df094190d426dc968d2403cbf5888244df0bfac1d1d0a"
   os_images:
     osp_version: '4.8'
     rhcos_version: 48.84.202107202156-0
