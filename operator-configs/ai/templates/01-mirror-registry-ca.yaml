@@ -31,12 +31,12 @@ data:
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4817"
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4819"
     [[registry]]
        prefix = ""
        location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
-       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4817"
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}/ocp4819"
 ---
