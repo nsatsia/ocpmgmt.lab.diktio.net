@@ -19,7 +19,7 @@ global:
   default_storage_class: "ocs-storagecluster-ceph-rbd"
   # default_storage_class: "ocs-external-storagecluster-ceph-rbd"
   dns: 192.19.128.2
-  imagesetref_name: "openshift-v4.8.17-mirror"
+  imagesetref_name: "openshift-v4.8.19-mirror"
   pull_secret: pull-secret
 # NEED to remove servernamespace and switch to gitops.namespace on next rebuild of management cluster
   servernamespace: telco-gitops
