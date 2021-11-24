@@ -27,6 +27,13 @@ data:
        location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}"
     [[registry]]
        prefix = ""
+       location = "quay.io/ocpmetal"
+       mirror-by-digest-only = false
+
+       [[registry.mirror]]
+       location = "{{ $.Values.ai.registry_url }}/{{ $.Values.ai.registry_user }}"
+    [[registry]]
+       prefix = ""
        location = "quay.io/openshift-release-dev/ocp-release"
        mirror-by-digest-only = false
 
