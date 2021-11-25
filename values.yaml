@@ -79,6 +79,7 @@ mirror:
 quay:
   config: lab-quay-config-bundle
   operator_source: redhat-operator-index
+
 ai: 
   namespace: "assisted-installer"
   service_config_name: "assisted-service-config"
