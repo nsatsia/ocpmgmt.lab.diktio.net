@@ -59,7 +59,7 @@ gitops:
   service_account: cli-job-sa
   service_account_name: cli-job-sa
   # hook_image: registry.redhat.io/openshift4/ose-cli:latest
-  hook_image: registry.redhat.io/openshift4/ose-tools-rhel8:latest
+  hook_image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:e44074f21e0cca6464e50cb6ff934747e0bd11162ea01d522433a1a1ae116103
 
 bmh:
   prov_os_download_url: http://192.19.130.11:8989/rhcos-48.84.202106301921-0-openstack.x86_64.qcow2.gz?sha256=5a75df7b4d4dc1861093e520187a133eda3439019f280dc6e2f57edf70eb089d
