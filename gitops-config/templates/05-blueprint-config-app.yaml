@@ -6,7 +6,7 @@ metadata:
  namespace: {{ $.Values.global.servernamespace }}
 spec:
   destination:
-    namespace: openshift-operators
+    namespace: {{ $.Values.global.servernamespace }}
     server: 'https://kubernetes.default.svc'
   project: default
   source:
