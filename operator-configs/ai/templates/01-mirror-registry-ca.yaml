@@ -21,7 +21,7 @@ data:
 
     [[registry]]
        prefix = ""
-       location = "quay.io/openshift4"
+       location = "registry.redhat.io/openshift4"
        mirror-by-digest-only = false
 
        [[registry.mirror]]
