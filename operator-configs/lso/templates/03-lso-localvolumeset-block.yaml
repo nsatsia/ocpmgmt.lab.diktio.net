@@ -24,18 +24,18 @@ spec:
   nodeSelector:
     nodeSelectorTerms:
       - matchExpressions:
-          #- key: ran.openshift.io/lso
-          #  operator: Exists
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            {{- range $.Values.nodes }}
-              {{- range . }}
-                {{- if eq .lso "true" }}
-              - {{ .name }}.{{ $.Values.global.name }}.{{ $.Values.global.domain }}
-                {{- end }}
-              {{- end }}
-            {{- end }}
+          - key: ran.openshift.io/lso
+            operator: Exists
+          #- key: kubernetes.io/hostname
+          #  operator: In
+          #  values:
+          #  {{- range $.Values.nodes }}
+          #    {{- range . }}
+          #      {{- if eq .lso "true" }}
+          #    - {{ .name }}.{{ $.Values.global.name }}.{{ $.Values.global.domain }}
+          #      {{- end }}
+          #    {{- end }}
+          #  {{- end }}
   storageClassName: ocs-local-volume-set
   volumeMode: Block
   #fstype: ""
