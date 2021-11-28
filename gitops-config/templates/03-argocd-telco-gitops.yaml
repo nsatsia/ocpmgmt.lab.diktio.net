@@ -22,9 +22,9 @@ spec:
       requests:
         cpu: 250m
         memory: 1Gi
-      sharding:
-        enabled: true
-        replocas: 3
+    sharding:
+      enabled: true
+      replocas: 3
   dex:
     resources:
       limits:
