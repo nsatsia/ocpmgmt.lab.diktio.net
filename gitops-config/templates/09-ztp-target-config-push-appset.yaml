@@ -31,7 +31,7 @@ spec:
       syncPolicy:
         automated:
           # Default prune is "false" 
-          # prune: true
+          prune: true
           selfHeal: true 
           # Allows deleting all application resources during automatic syncing ( false by default ).
           allowEmpty: true
