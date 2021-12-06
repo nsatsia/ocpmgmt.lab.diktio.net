@@ -42,10 +42,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: cli-job-sa
-    namespace: {{ $.Values.global.servernamespace }}
+    namespace: {{ $.Values.gitops.namespace }}
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: cli-job-sa
-  namespace: {{ $.Values.global.servernamespace }}
+  namespace: {{ $.Values.gitops.namespace }}

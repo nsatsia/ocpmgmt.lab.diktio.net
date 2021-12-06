@@ -2,11 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
- name: {{ $.Values.global.name }}-{{ $.Values.global.servernamespace }}-blueprint-configs
- namespace: {{ $.Values.global.servernamespace }}
+ name: {{ $.Values.global.name }}-{{ $.Values.gitops.namespace }}-blueprint-configs
+ namespace: {{ $.Values.gitops.namespace }}
 spec:
   destination:
-    namespace: {{ $.Values.global.servernamespace }}
+    namespace: {{ $.Values.gitops.namespace }}
     server: 'https://kubernetes.default.svc'
   project: default
   source:
@@ -15,14 +15,14 @@ spec:
     path: bp-configs
     helm:
       valueFiles:
-      - "{{ $.Values.global.values_directory_url }}/values.yaml"
+      - "{{ $.Values.global.values_global_url }}/values.yaml"
   syncPolicy:
     automated:
       # Default prune is "false" 
-      prune: true
+#          prune: true
       selfHeal: true 
       # Allows deleting all application resources during automatic syncing ( false by default ).
-      allowEmpty: true
+#          allowEmpty: true
     syncOptions:
       # (equivalent to 'kubectl apply --validate=false')
       - Validate=false

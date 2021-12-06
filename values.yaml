@@ -8,22 +8,14 @@ global:
 #
 # Need to rename to values_global_url
 #
-  values_directory_url: https://github.com/nsatsia/ocpmgmt.lab.diktio.net/raw/main/
+  values_global_url: https://github.com/nsatsia/ocpmgmt.lab.diktio.net/raw/main/
 #
   base_ztp_url: https://github.com/nsatsia/openshift-gitops.git
   values_cluster_prefix_url: https://github.com/nsatsia
-  api_vip: 192.19.129.21
-  ingress_vip: 192.19.129.22
-  clusternetwork: 10.128.0.0/14
-  default_router: 192.19.129.254
   default_storage_class: "ocs-storagecluster-ceph-rbd"
   # default_storage_class: "ocs-external-storagecluster-ceph-rbd"
   dns: 192.19.128.2
   imagesetref_name: "openshift-v4.8.19-mirror"
-  pull_secret: pull-secret
-# NEED to remove servernamespace and switch to gitops.namespace on next rebuild of management cluster
-  servernamespace: telco-gitops
-  servicenetwork: 172.30.0.0/16
   pull_secret_name: pull-secret
   pull_secret: '{"auths":{"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"lab-registry.ocpmgmt.lab.diktio.net":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"quay.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"},"registry.redhat.io":{"auth":"bnNhdHNpYTpSZWRoYXQwMQ==","email":"nsatsia@redhat.com"}}}'
   ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkn6tx/IfpY1Eb9QVBsr2Q5WHDGSDTbysuW+2OiifkVfrP/0zVjo7pe1bBxUaEID0rWN6CC1VTwS4GX6cZhGr0wlgT8TUN+rHutxL0Tawqy+yTzqYJ+Vfeilz3CfdAt06QJL9sy57RrlsSTIrlU8CijJTght+v57tmWyKDt2mNJL/5WX9PG40mgXqQ+tfFn+cluOc3V+XcK5dx89dS3oD3Wzn/FmTdwKm8+bnZapWBz7YJf3BU5AL+E82vRCIyZ2MnzbjJ33nTgEF/NdKLEPtyp1dT3Lb0mGB8duj0CFtA3u7CwVi/KMp9JdssN3mN8mGtPE+NwYKsbDA1/++jRCqX login'
@@ -50,8 +42,6 @@ global:
     WFBk6T3neXntdKX5ZipQM6qfFbH8DoDdElCvqZkB2bc1AwWaFzYbiEjz0oeowpUw
     tEChGIzF/34=
     -----END CERTIFICATE-----
-# CLUSTER DOMAIN
-# SNO?
 
 gitops:
   namespace: telco-gitops

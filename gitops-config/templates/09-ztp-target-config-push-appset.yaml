@@ -26,15 +26,15 @@ spec:
         targetRevision: HEAD
         helm:
           valueFiles:
-          - "{{ $.Values.global.values_directory_url }}/values.yaml"
+          - "{{ $.Values.global.values_global_url }}/values.yaml"
           - "{{ $.Values.global.values_cluster_prefix_url }}/{{ "{{" }}path.basename{{ "}}" }}/raw/main/values.yaml"
       syncPolicy:
         automated:
           # Default prune is "false" 
-          prune: true
+#          prune: true
           selfHeal: true 
           # Allows deleting all application resources during automatic syncing ( false by default ).
-          allowEmpty: true
+#          allowEmpty: true
         syncOptions:
           # (equivalent to 'kubectl apply --validate=false')
           - Validate=false

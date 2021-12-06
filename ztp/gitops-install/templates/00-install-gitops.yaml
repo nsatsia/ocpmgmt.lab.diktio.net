@@ -8,7 +8,7 @@ spec:
   config:
     env:
     - name: ARGOCD_CLUSTER_CONFIG_NAMESPACES
-      value: openshift-gitops, {{ $.Values.global.servernamespace }}
+      value: openshift-gitops, {{ $.Values.gitops.namespace }}
   channel: "stable"
   installPlanApproval: Automatic
   name: openshift-gitops-operator

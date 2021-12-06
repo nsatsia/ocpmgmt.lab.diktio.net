@@ -8,7 +8,7 @@ metadata:
     helm.sh/hook-delete-policy: hook-succeeded
     #helm.sh/hook-weight: "-5"
   name: preinstall-{{ $.Values.global.name }}-wait-argocd-job
-  namespace: {{ $.Values.global.servernamespace }}
+  namespace: {{ $.Values.gitops.namespace }}
 spec:
   template:
     spec:
